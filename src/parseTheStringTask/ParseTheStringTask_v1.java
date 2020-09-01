@@ -17,17 +17,21 @@ public class ParseTheStringTask_v1 {
         while (st.hasMoreElements()) {
             String values = (String) st.nextElement();
             updatePref(pref, isFirst, values);
-            String[] split = values.split(ParseTheStringTaskConstants.COMMA);
-            Arrays.stream(split).filter(str -> !str.equals(ParseTheStringTaskConstants.EMPTY_STR)).forEach(str -> {
-                System.out.println(pref.toString() + " "
-                        + str.replaceAll("\\s", ParseTheStringTaskConstants.EMPTY_STR));
-            });
+            Arrays.stream(values.split(ParseTheStringTaskConstants.COMMA))
+                    .filter(str -> !str.equals(ParseTheStringTaskConstants.EMPTY_STR))
+                    .forEach(str -> {
+                            System.out.println(new StringBuilder(pref)
+                                    .append(ParseTheStringTaskConstants.STR_SPACE)
+                                    .append(str.replaceAll("\\s", ParseTheStringTaskConstants.EMPTY_STR))
+                                    .toString());
+                    });
             isFirst = false;
         }
     }
 
     private static void updatePref(StringBuilder pref, boolean isFirst, String values) {
-        if (values.charAt(0) != ParseTheStringTaskConstants.COMMA_CHAR && !isFirst) {
+        boolean isFirstCharComma = values.charAt(0) != ParseTheStringTaskConstants.COMMA_CHAR;
+        if (isFirstCharComma && !isFirst) {
             pref.append(ParseTheStringTaskConstants.DASH_STR);
         } else if (pref.length() != 0) {
             pref.deleteCharAt(pref.length() - 1);
