@@ -19,14 +19,17 @@ public class ParseTheStringTask_v1 {
             updatePref(pref, isFirst, values);
             Arrays.stream(values.split(ParseTheStringTaskConstants.COMMA))
                     .filter(str -> !str.equals(ParseTheStringTaskConstants.EMPTY_STR))
-                    .forEach(str -> {
-                            System.out.println(new StringBuilder(pref)
-                                    .append(ParseTheStringTaskConstants.STR_SPACE)
-                                    .append(str.replaceAll("\\s", ParseTheStringTaskConstants.EMPTY_STR))
-                                    .toString());
-                    });
+                    .forEach(str -> printValueWithPref(pref, str));
+
             isFirst = false;
         }
+    }
+
+    private static void printValueWithPref(StringBuilder pref, String str) {
+        System.out.println(new StringBuilder(pref)
+                .append(ParseTheStringTaskConstants.STR_SPACE)
+                .append(str.replaceAll("\\s", ParseTheStringTaskConstants.EMPTY_STR))
+                .toString());
     }
 
     private static void updatePref(StringBuilder pref, boolean isFirst, String values) {
