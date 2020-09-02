@@ -2,6 +2,7 @@ package parseTheStringTask;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ParseTheStringTask_v2 {
@@ -23,8 +24,7 @@ public class ParseTheStringTask_v2 {
                 stringWithoutParenthesisOnTheSides.lastIndexOf(ParseTheStringTaskConstants.CLOSE_PARENTHESIS);
 
         if (indexFirstParenthesis < 0 || indexLastParenthesis < 0) {
-            return getResultString(stringWithoutParenthesisOnTheSides
-                    .replaceAll("\\s", ParseTheStringTaskConstants.EMPTY_STR), pref);
+            return getResultString(removeSpaces().apply(stringWithoutParenthesisOnTheSides) , pref);
         }
 
         //append values before first parenthesis
@@ -53,9 +53,13 @@ public class ParseTheStringTask_v2 {
 
     private static List<String> getSortedValues(StringBuilder str) {
         return Arrays.stream(str.toString().split(ParseTheStringTaskConstants.COMMA))
-                .map(s -> s.replaceAll("\\s", ParseTheStringTaskConstants.EMPTY_STR))
+                .map(removeSpaces())
                 .sorted()
                 .collect(Collectors.toList());
+    }
+
+    private static Function<String, String> removeSpaces() {
+        return s -> s.replaceAll("\\s", ParseTheStringTaskConstants.EMPTY_STR);
     }
 
     private static String getNewPref(String pref) {
