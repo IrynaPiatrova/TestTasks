@@ -11,9 +11,8 @@ public class ParseTheStringTaskService {
         return str.substring(1, str.length() - 1);
     }
 
-    public static List<String> getSortedValues(StringBuilder str) {
-        return Arrays.stream(str.toString()
-                .split(ParseTheStringTaskConstants.COMMA))
+    public static List<String> getSortedValues(String str) {
+        return Arrays.stream(str.split(ParseTheStringTaskConstants.COMMA))
                 .map(removeSpaces())
                 .sorted()
                 .collect(Collectors.toList());
@@ -27,8 +26,8 @@ public class ParseTheStringTaskService {
         return new StringBuilder(pref).append(ParseTheStringTaskConstants.DASH_STR).toString();
     }
 
-    public static String getLastValue(StringBuilder str) {
-        String[] split = str.toString().split(ParseTheStringTaskConstants.COMMA);
+    public static String getLastValue(String str) {
+        String[] split = str.split(ParseTheStringTaskConstants.COMMA);
         return split[split.length - 1];
     }
 
@@ -47,7 +46,7 @@ public class ParseTheStringTaskService {
             return -1;
         }
 
-        for (int i = indexFirstParenthesis; i <= chars.length; i++) {
+        for (int i = indexFirstParenthesis; i <= chars.length - 1; i++) {
             if (chars[i] == '(') {
                 counter++;
             }

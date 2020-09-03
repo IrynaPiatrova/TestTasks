@@ -28,7 +28,7 @@ public class ParseTheStringTask_v2 {
         str.append(stringWithoutParenthesisOnTheSides, 0, indexFirstParenthesis);
 
         //get last value before first parenthesis
-        String keyParentValue = ParseTheStringTaskService.getLastValue(str);
+        String keyParentValue = ParseTheStringTaskService.getLastValue(str.toString());
 
         //append values after last parenthesis
         str.append(stringWithoutParenthesisOnTheSides, indexClosingParenthesis + 1,
@@ -36,7 +36,7 @@ public class ParseTheStringTask_v2 {
 
         StringBuilder result = new StringBuilder();
 
-        ParseTheStringTaskService.getSortedValues(str).forEach(strValue -> {
+        ParseTheStringTaskService.getSortedValues(str.toString()).forEach(strValue -> {
             result.append(ParseTheStringTaskService.getResultString(strValue, pref));
             if (keyParentValue != null && keyParentValue.equals(strValue)) {
                 String hierarchicalSubstring = stringWithoutParenthesisOnTheSides
