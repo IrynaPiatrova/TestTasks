@@ -74,13 +74,13 @@ public class ParseTheStringTask_v3 {
             result.append(k).append(System.getProperty("line.separator"));
             if (!ParseTheStringTaskConstants.EMPTY_STR.equals(v)) {
                 result.append(v);
-                addSeparatorIfNeede(result);
+                addSeparatorIfNeeded(result);
             }
         });
         return result.toString();
     }
 
-    private static void addSeparatorIfNeede(StringBuilder result) {
+    private static void addSeparatorIfNeeded(StringBuilder result) {
         if (result.toString().toCharArray()[result.length() - 1] != '\n') {
             result.append(System.getProperty("line.separator"));
         }
