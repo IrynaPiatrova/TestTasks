@@ -6,9 +6,12 @@ public class ParseTheStringTask_v3 {
 
     public static void main(String[] args) {
         System.out.println("Result : ");
-        String string =
-                ParseTheStringTaskService.getStringWithoutParenthesisOnTheSides(ParseTheStringTaskConstants.STR2);
-        System.out.println(gerResult(getTree(ParseTheStringTaskService.removeSpaces().apply(string),
+        parseAndPrintResult(ParseTheStringTaskConstants.STR2);
+    }
+
+    private static void parseAndPrintResult(String string) {
+        string = ParseTheStringTaskService.getStringWithoutParenthesisOnTheSides(ParseTheStringTaskConstants.STR2);
+        System.out.println(getResultString(getTree(ParseTheStringTaskService.removeSpaces().apply(string),
                 ParseTheStringTaskConstants.EMPTY_STR)));
     }
 
@@ -19,14 +22,14 @@ public class ParseTheStringTask_v3 {
 
         //when there's only one word left
         if (indexFirstParenthesis < 0 && indexFirstComma < 0) {
-            treeMap.put(pref + string, "");
+            treeMap.put(new StringBuilder(pref).append(string).toString(), ParseTheStringTaskConstants.EMPTY_STR);
             return treeMap;
         }
 
         while (string != null) {
             indexFirstComma = string.indexOf(ParseTheStringTaskConstants.COMMA);
             String strBeforeComma = indexFirstComma > 0 ? string.substring(0, indexFirstComma) : string;
-            int indexParenthesis = strBeforeComma.indexOf('(');
+            int indexParenthesis = strBeforeComma.indexOf(ParseTheStringTaskConstants.OPEN_PARENTHESIS_CHAR);
             string =
                     getSubstringAndUpdateTree(string, pref, treeMap, indexFirstComma, strBeforeComma, indexParenthesis);
         }
@@ -41,13 +44,12 @@ public class ParseTheStringTask_v3 {
             String strBetweenParenthesis = string.substring(indexParenthesis + 1, closingParenthesis);
 
             treeMap.put(pref + string.substring(0, indexParenthesis),
-                    gerResult(getTree(strBetweenParenthesis, ParseTheStringTaskService.getNewPref(pref))));
+                    getResultString(getTree(strBetweenParenthesis, ParseTheStringTaskService.getNewPref(pref))));
 
             string = getSubstringByIndex(string, closingParenthesis); //remove what we added to tree
         } else if (!ParseTheStringTaskConstants.EMPTY_STR.equals(strBeforeComma)) {
             treeMap.put(pref + strBeforeComma, ParseTheStringTaskConstants.EMPTY_STR);
-            string = indexFirstComma < 0 ? null
-                    : getSubstringByIndex(string, indexFirstComma);
+            string = indexFirstComma < 0 ? null : getSubstringByIndex(string, indexFirstComma);
         } else {
             string = null;
         }
@@ -68,7 +70,7 @@ public class ParseTheStringTask_v3 {
         return string;
     }
 
-    private static String gerResult(TreeMap<String, String> treeMap) {
+    private static String getResultString(TreeMap<String, String> treeMap) {
         StringBuilder result = new StringBuilder();
         treeMap.forEach((k, v) -> {
             result.append(k).append(System.getProperty("line.separator"));

@@ -13,7 +13,6 @@ public class ParseTheStringTaskService {
 
     public static List<String> getSortedValues(String str) {
         return Arrays.stream(str.split(ParseTheStringTaskConstants.COMMA))
-                .map(removeSpaces())
                 .sorted()
                 .collect(Collectors.toList());
     }
@@ -31,11 +30,15 @@ public class ParseTheStringTaskService {
         return split[split.length - 1];
     }
 
-    public static String getResultString(String stringWithoutParenthesis, String pref) {
+    public static String getResultStringWithSeparator(String stringWithoutParenthesis, String pref) {
         return new StringBuilder(pref)
-                .append(ParseTheStringTaskConstants.STR_SPACE)
                 .append(stringWithoutParenthesis)
                 .append(System.getProperty("line.separator")).toString();
+    }
+
+    public static String getResultString(String string, String pref) {
+        return new StringBuilder(pref)
+                .append(string).toString();
     }
 
     public static int getClosingParenthesisPosition(String str, int indexFirstParenthesis) {

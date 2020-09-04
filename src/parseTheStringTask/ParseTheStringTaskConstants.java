@@ -9,5 +9,5 @@ public class ParseTheStringTaskConstants {
     protected static final String EMPTY_STR = "";
     protected static final String STR_SPACE = " ";
     protected static final String OPEN_PARENTHESIS = "(";
-    protected static final String CLOSE_PARENTHESIS = ")";
+    protected static final char OPEN_PARENTHESIS_CHAR = '(';
 }
