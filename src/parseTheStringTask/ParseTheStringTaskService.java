@@ -8,7 +8,12 @@ import java.util.stream.Collectors;
 public class ParseTheStringTaskService {
 
     public static String getStringWithoutParenthesisOnTheSides(String str) {
-        return str.substring(1, str.length() - 1);
+        char[] chars = str.toCharArray();
+        if (chars[0] == ParseTheStringTaskConstants.OPEN_PARENTHESIS_CHAR
+                && chars[str.length() - 1] == ParseTheStringTaskConstants.CLOSING_PARENTHESIS_CHAR) {
+            return str.substring(1, str.length() - 1);
+        }
+        return str;
     }
 
     public static List<String> getSortedValues(String str) {
