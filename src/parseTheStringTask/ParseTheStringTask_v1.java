@@ -6,11 +6,11 @@ import java.util.StringTokenizer;
 public class ParseTheStringTask_v1 {
     public static void main(String[] args) {
         System.out.println("Result: ");
-        parseAndPrintResult();
+        parseAndPrintResult(ParseTheStringTaskConstants.STR);
     }
 
-    private static void parseAndPrintResult() {
-        StringTokenizer st = new StringTokenizer(ParseTheStringTaskConstants.STR, "()");
+    private static void parseAndPrintResult(String string) {
+        StringTokenizer st = new StringTokenizer(ParseTheStringTaskService.removeSpaces().apply(string), "()");
         StringBuilder pref = new StringBuilder();
         boolean isFirst = true;
 
@@ -28,7 +28,7 @@ public class ParseTheStringTask_v1 {
     private static void printValueWithPref(StringBuilder pref, String str) {
         System.out.println(new StringBuilder(pref)
                 .append(ParseTheStringTaskConstants.STR_SPACE)
-                .append(str.replaceAll("\\s", ParseTheStringTaskConstants.EMPTY_STR))
+                .append(str)
                 .toString());
     }
 

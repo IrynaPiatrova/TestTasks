@@ -22,7 +22,7 @@ public class ParseTheStringTask_v3 {
 
         //when there's only one word left
         if (indexFirstParenthesis < 0 && indexFirstComma < 0) {
-            treeMap.put(new StringBuilder(pref).append(string).toString(), ParseTheStringTaskConstants.EMPTY_STR);
+            treeMap.put(ParseTheStringTaskService.getStringValue(string, pref), ParseTheStringTaskConstants.EMPTY_STR);
             return treeMap;
         }
 

@@ -22,7 +22,7 @@ public class ParseTheStringTask_v2 {
                 .getClosingParenthesisPosition(stringWithoutParenthesisOnTheSides, indexFirstParenthesis);
 
         if (indexFirstParenthesis < 0 || indexClosingParenthesis < 0) {
-            return ParseTheStringTaskService.getResultStringWithSeparator(stringWithoutParenthesisOnTheSides, pref);
+            return ParseTheStringTaskService.getStringValueWithSeparator(stringWithoutParenthesisOnTheSides, pref);
         }
 
         //append values before first parenthesis
@@ -45,7 +45,7 @@ public class ParseTheStringTask_v2 {
         StringBuilder result = new StringBuilder();
 
         ParseTheStringTaskService.getSortedValues(str).forEach(strValue -> {
-            result.append(ParseTheStringTaskService.getResultStringWithSeparator(strValue, pref));
+            result.append(ParseTheStringTaskService.getStringValueWithSeparator(strValue, pref));
             if (keyParentValue != null && keyParentValue.equals(strValue)) {
                 String hierarchicalSubstring = stringWithoutParenthesisOnTheSides
                         .substring(indexFirstParenthesis + 1, indexClosingParenthesis);

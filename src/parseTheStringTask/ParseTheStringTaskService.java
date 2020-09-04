@@ -30,15 +30,14 @@ public class ParseTheStringTaskService {
         return split[split.length - 1];
     }
 
-    public static String getResultStringWithSeparator(String stringWithoutParenthesis, String pref) {
+    public static String getStringValueWithSeparator(String stringWithoutParenthesis, String pref) {
         return new StringBuilder(pref)
                 .append(stringWithoutParenthesis)
                 .append(System.getProperty("line.separator")).toString();
     }
 
-    public static String getResultString(String string, String pref) {
-        return new StringBuilder(pref)
-                .append(string).toString();
+    public static String getStringValue(String string, String pref) {
+        return new StringBuilder(pref).append(string).toString();
     }
 
     public static int getClosingParenthesisPosition(String str, int indexFirstParenthesis) {
