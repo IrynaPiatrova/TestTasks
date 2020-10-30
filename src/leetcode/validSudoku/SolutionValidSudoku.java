@@ -27,7 +27,7 @@ import java.util.*;
 
 public class SolutionValidSudoku {
     public static void main(String[] args) {
-        char[][] board = {{'8', '3', '.', '.', '7', '.', '.', '.', '.'}
+        char[][] board = {{'5', '3', '.', '.', '7', '.', '.', '.', '.'}
                 , {'6', '.', '.', '1', '9', '5', '.', '.', '.'}
                 , {'.', '9', '8', '.', '.', '.', '.', '6', '.'}
                 , {'8', '.', '.', '.', '6', '.', '.', '.', '3'}
@@ -42,15 +42,18 @@ public class SolutionValidSudoku {
     }
 
     public static boolean isValidSudoku_v2(char[][] board) {
-        Set seen = new HashSet();
-        for (int i = 0; i < 9; ++i) {
-            for (int j = 0; j < 9; ++j) {
-                char number = board[i][j];
-                if (number != '.')
-                    if (!seen.add(number + " in row " + i) ||
-                            !seen.add(number + " in column " + j) ||
-                            !seen.add(number + " in block " + i / 3 + "-" + j / 3))
+        Set set = new HashSet<>();
+
+        for (int x = 0; x < board.length; x++) {
+            for (int y = 0; y < board[x].length; y++) {
+                char value = board[x][y];
+                if (value != '.') {
+                    if (!set.add(board[x][y] + " row " + x) ||
+                            !set.add(board[x][y] + " column " + y) ||
+                            !set.add(board[x][y] + " sub-boxes " + x / 3 + "." + y / 3)) {
                         return false;
+                    }
+                }
             }
         }
         return true;
