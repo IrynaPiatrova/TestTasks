@@ -1,4 +1,4 @@
-package udemy;
+package udemy.java.tests;
 
 /**
  * You need to implement a program that displays numbers from 1 to 100 on the screen.

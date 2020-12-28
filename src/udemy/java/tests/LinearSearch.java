@@ -1,4 +1,4 @@
-package udemy;
+package udemy.java.tests;
 
 /**
  * It is necessary to implement a program that performs a linear search in the array
