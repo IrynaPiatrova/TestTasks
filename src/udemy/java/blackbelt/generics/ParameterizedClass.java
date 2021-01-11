@@ -12,7 +12,7 @@ public class ParameterizedClass {
 
 class Info<T> { // can use <V>, <V1, V2> instead of <T>
     private T value; //can't be static
-
+    //private T value2;
     public Info(T value) {
         this.value = value;
     }
