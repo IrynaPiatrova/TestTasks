@@ -4,21 +4,22 @@ import java.util.ArrayList;
 
 public class ParameterizedMethod {
     public static void main(String[] args) {
-        ArrayList<String> arrayListString = new ArrayList<>();
-        arrayListString.add("Privat");
-        /*arrayListString.add("Ira");
-        arrayListString.add("Minsk");*/
+        ArrayList<Integer> arrayListInteger = new ArrayList<>();
+        arrayListInteger.add(1);
+        arrayListInteger.add(2);
+        arrayListInteger.add(3);
 
-        String secondElementString = GenMethod.getSecondElement(arrayListString);
-        if(secondElementString != null)
-        System.out.println(secondElementString);
+        Integer secondElement = GenMethod.getSecondElement(arrayListInteger);
+        if(secondElement != null)
+        System.out.println(secondElement);
     }
 
 
 }
 
 class GenMethod {
-    public static <T> T getSecondElement(ArrayList<T> arrayList) {
+    //public static <T> T getSecondElement(ArrayList<T> arrayList) { //All elements
+    public static <T extends Number> T getSecondElement(ArrayList<T> arrayList) {
         //return arrayList.size() >= 2 ? arrayList.get(1) : null;
         try {
             return arrayList.get(1);
