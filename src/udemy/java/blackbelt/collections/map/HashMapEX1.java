@@ -19,6 +19,7 @@ public class HashMapEX1 {
         map.put(10005,null);
 
         map.putIfAbsent(10005,"Kirill");
+        map.putIfAbsent(10003,"IRRRRRRAAAA"); // Не добавится так как 10003 уже существует
 
         System.out.println(map);
 
